@@ -23,11 +23,15 @@
       (vim.api.nvim_set_keymap :x key target {:noremap true}))
   nil)
 
+(fn map-normal [key target]
+  "For normal mode mappings"
+  (when (= (vim.fn.maparg key :n) "")
+    (vim.api.nvim_set_keymap :n key target {:noremap true})))
+
 (fn map-all [key target]
-  "For everything else"
-  (if (= (vim.fn.maparg key :n) "")
-      (vim.api.nvim_set_keymap :n key target {:noremap true})
-      (map-text-object key target)))
+  "For all directional mappings"
+  (map-normal key target)
+  (map-text-object key target))
 
 (fn mapping-setup []
   ;; Keys still free
@@ -51,8 +55,9 @@
   (map-all :gs :gk)
   ;; ------
   ;; on préserve les variantes avec 'z'
-  ;; I like zt better
-  ;; (map-all "zt" "zj")
+  (map-all :zj :zt)
+  (map-all :zt :zj)
+  (map-all :zk :zs)
   (map-all :zs :zk)
   ;; ------
   (map-all :h :t)
@@ -71,19 +76,19 @@
   ;; {k} devient [s]
   (map-all :K :S)
   ;; {h} devient [S]
-  (map-all :gb :gT)
+  (map-normal :gb :gT)
   ;; le couple [gb]/[gé] agit sur les tabs
-  (map-all "gé" :gt)
+  (map-normal "gé" :gt)
   ;; le couple [gb]/[gé] agit sur les tabs
-  (map-all :gB ":execute \"silent! tabfirst\"<CR>")
+  (map-normal :gB ":execute \"silent! tabfirst\"<CR>")
   ;; [gB] va au premier tab
-  (map-all "gÉ" ":execute \"silent! tablast\"<CR>")
+  (map-normal "gÉ" ":execute \"silent! tablast\"<CR>")
   ;; [gÉ] au dernier
-  (map-all :gT "<C-]>")
+  (map-normal :gT "<C-]>")
   ;; [gT] est libéré et peut agir sur les tags
-  (map-all "«" "<")
+  (map-normal "«" "<")
   ;; [<] est moins accessible que [«]
-  (map-all "»" ">")
+  (map-normal "»" ">")
   ;; idem pour [»] et [>]
   (map-all "g," "g;")
   ;; idem pour [g,] et [g;]
@@ -103,33 +108,33 @@
   (map-text-object "iÉ" :iW)
   ;; idem pour [iW] et [iÉ]
   ;; ------
-  (map-all :w :<C-w>)
+  (map-normal :w :<C-w>)
   ;; [w] est libre pour faire <C-w>
-  (map-all :W :<C-w><C-w>)
+  (map-normal :W :<C-w><C-w>)
   ;; et [w] pour faire <C-w><C-w>
-  (map-all :wc :<C-w>h)
+  (map-normal :wc :<C-w>h)
   ;; on map [w]+direction
-  (map-all :wt :<C-w>j)
+  (map-normal :wt :<C-w>j)
   ;; on map [w]+direction
-  (map-all :ws :<C-w>k)
+  (map-normal :ws :<C-w>k)
   ;; on map [w]+direction
-  (map-all :wr :<C-w>l)
+  (map-normal :wr :<C-w>l)
   ;; on map [w]+direction
-  (map-all :wC :<C-w>H)
+  (map-normal :wC :<C-w>H)
   ;; idem pour les majuscules
-  (map-all :wT :<C-w>J)
+  (map-normal :wT :<C-w>J)
   ;; idem pour les majuscules
-  (map-all :wS :<C-w>K)
+  (map-normal :wS :<C-w>K)
   ;; idem pour les majuscules
-  (map-all :wR :<C-w>L)
+  (map-normal :wR :<C-w>L)
   ;; idem pour les majuscules
   ;; ------
-  (map-all :wh :<C-w>s)
+  (map-normal :wh :<C-w>s)
   ;; crée un split _h_orizontal
   ;; ------
-  (map-all "wé" :<C-w>t)
+  (map-normal "wé" :<C-w>t)
   ;; va en haut à gauche
-  (map-all "wÉ" :<C-w>T)
+  (map-normal "wÉ" :<C-w>T)
   ;; déplace sur un nouveau tab
   )
 
