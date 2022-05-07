@@ -8,6 +8,8 @@ It aims to be faster (takes only 0.4ms at startup on my machine, while vim-bepo 
 
 ## Example Use Case
 
+You should call the extension early in your config, so that you can erase mappings later (or with later extensions) more easily.
+
 ``` lua
 require("bepo").setup()
 ```
