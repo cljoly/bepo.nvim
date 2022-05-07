@@ -35,6 +35,7 @@
   ;; Keys still free
   ;; , and ; as they may be used as leaders
   ;; à and À
+  ;; è and È
   ;; on préserve {hjkl} pour les directions
   (map-all :c :h)
   (map-all :t :j)
@@ -42,13 +43,12 @@
   (map-all :r :l)
   (map-all :C :H)
   ;; ------
-  ;; {HJKL} devient [CTSR]
+  ;; {JKL} devient [TSR]
   (map-all :T :J)
   (map-all :S :K)
   (map-all :R :L)
-  ;; {HJKL} devient [CTSR] -> free R
   ;; ------
-  ;; on préserve les variantes avec 'g' 
+  ;; on préserve les variantes avec 'g'
   (map-all :gt :gj)
   (map-all :gs :gk)
   ;; ------
@@ -58,82 +58,71 @@
   (map-all :zk :zs)
   (map-all :zs :zk)
   ;; ------
-  (map-all :h :t)
   ;; {t} devient [h] pour être proche de [f]
-  (map-all :H :T)
+  (map-all :h :t)
   ;; idem pour {T} et [H]
-  (map-all :l :c)
+  (map-all :H :T)
   ;; {c} devient [l]
-  (map-all :L :C)
+  (map-all :l :c)
   ;; {C} devient [L]
-  (map-all :j :r)
+  (map-all :L :C)
   ;; {j} devient [r]
-  (map-all :J :R)
+  (map-all :j :r)
   ;; {J} devient [R]
-  (map-all :k :s)
+  (map-all :J :R)
   ;; {k} devient [s]
+  (map-all :k :s)
+  ;; {K} devient [S]
   (map-all :K :S)
-  ;; {h} devient [S]
+  ;; le couple [gb]/[gé] agit sur les tabs
   (map-normal :gb :gT)
-  ;; le couple [gb]/[gé] agit sur les tabs
   (map-normal "gé" :gt)
-  ;; le couple [gb]/[gé] agit sur les tabs
-  (map-normal :gB ":execute \"silent! tabfirst\"<CR>")
   ;; [gB] va au premier tab
-  (map-normal "gÉ" ":execute \"silent! tablast\"<CR>")
+  (map-normal :gB ":execute \"silent! tabfirst\"<CR>")
   ;; [gÉ] au dernier
-  (map-normal :gT "<C-]>")
+  (map-normal "gÉ" ":execute \"silent! tablast\"<CR>")
   ;; [gT] est libéré et peut agir sur les tags
-  (map-normal "«" "<")
+  (map-normal :gT "<C-]>")
   ;; [<] est moins accessible que [«]
-  (map-normal "»" ">")
+  (map-normal "«" "<")
   ;; idem pour [»] et [>]
+  (map-normal "»" ">")
+  ;; idem pour [g,] et [g;] qui sont permutés
   (map-all "g," "g;")
-  ;; idem pour [g,] et [g;]
   (map-all "g;" "g,")
-  ;; qui sont permutés
-  (map-all "é" :w)
   ;; [w] est peu accessible, on utilise [é]
-  (map-all "É" :W)
+  (map-all "é" :w)
   ;; idem pour [W] et [É]
+  (map-all "É" :W)
   ;; ------
-  (map-text-object "aé" :aw)
   ;; idem pour [aw] et [aé]
-  (map-text-object "aÉ" :aW)
+  (map-text-object "aé" :aw)
   ;; idem pour [aW] et [aÉ]
-  (map-text-object "ié" :iw)
+  (map-text-object "aÉ" :aW)
   ;; idem pour [iw] et [ié]
-  (map-text-object "iÉ" :iW)
+  (map-text-object "ié" :iw)
   ;; idem pour [iW] et [iÉ]
+  (map-text-object "iÉ" :iW)
   ;; ------
-  (map-normal :w :<C-w>)
   ;; [w] est libre pour faire <C-w>
-  (map-normal :W :<C-w><C-w>)
+  (map-normal :w :<C-w>)
   ;; et [w] pour faire <C-w><C-w>
+  (map-normal :W :<C-w><C-w>)
+  ;; on map [w]+direction, miniscule + majuscule
   (map-normal :wc :<C-w>h)
-  ;; on map [w]+direction
   (map-normal :wt :<C-w>j)
-  ;; on map [w]+direction
   (map-normal :ws :<C-w>k)
-  ;; on map [w]+direction
   (map-normal :wr :<C-w>l)
-  ;; on map [w]+direction
   (map-normal :wC :<C-w>H)
-  ;; idem pour les majuscules
   (map-normal :wT :<C-w>J)
-  ;; idem pour les majuscules
   (map-normal :wS :<C-w>K)
-  ;; idem pour les majuscules
   (map-normal :wR :<C-w>L)
-  ;; idem pour les majuscules
-  ;; ------
-  (map-normal :wh :<C-w>s)
   ;; crée un split _h_orizontal
-  ;; ------
-  (map-normal "wé" :<C-w>t)
+  (map-normal :wh :<C-w>s)
   ;; va en haut à gauche
-  (map-normal "wÉ" :<C-w>T)
+  (map-normal "wé" :<C-w>t)
   ;; déplace sur un nouveau tab
+  (map-normal "wÉ" :<C-w>T)
   )
 
 (fn setup []
