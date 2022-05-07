@@ -31,11 +31,7 @@
   (map-normal key target)
   (map-text-object key target))
 
-(fn mapping-setup []
-  ;; Keys still free
-  ;; , and ; as they may be used as leaders
-  ;; à and À
-  ;; è and È
+(fn mapping-movement []
   ;; on préserve {hjkl} pour les directions
   (map-all :c :h)
   (map-all :t :j)
@@ -73,7 +69,9 @@
   ;; {k} devient [s]
   (map-all :k :s)
   ;; {K} devient [S]
-  (map-all :K :S)
+  (map-all :K :S))
+
+(fn mapping-tabs []
   ;; le couple [gb]/[gé] agit sur les tabs
   (map-normal :gb :gT)
   (map-normal "gé" :gt)
@@ -82,7 +80,9 @@
   ;; [gÉ] au dernier
   (map-normal "gÉ" ":execute \"silent! tablast\"<CR>")
   ;; [gT] est libéré et peut agir sur les tags
-  (map-normal :gT "<C-]>")
+  (map-normal :gT "<C-]>"))
+
+(fn mapping-easy-access []
   ;; [<] est moins accessible que [«]
   (map-normal "«" "<")
   ;; idem pour [»] et [>]
@@ -94,7 +94,6 @@
   (map-all "é" :w)
   ;; idem pour [W] et [É]
   (map-all "É" :W)
-  ;; ------
   ;; idem pour [aw] et [aé]
   (map-text-object "aé" :aw)
   ;; idem pour [aW] et [aÉ]
@@ -102,8 +101,9 @@
   ;; idem pour [iw] et [ié]
   (map-text-object "ié" :iw)
   ;; idem pour [iW] et [iÉ]
-  (map-text-object "iÉ" :iW)
-  ;; ------
+  (map-text-object "iÉ" :iW))
+
+(fn mapping-window []
   ;; [w] est libre pour faire <C-w>
   (map-normal :w :<C-w>)
   ;; et [w] pour faire <C-w><C-w>
@@ -122,13 +122,23 @@
   ;; va en haut à gauche
   (map-normal "wé" :<C-w>t)
   ;; déplace sur un nouveau tab
-  (map-normal "wÉ" :<C-w>T)
-  )
+  (map-normal "wÉ" :<C-w>T))
 
 (fn setup []
+  "Keys that are still free
+  ;; , and ; as they may be used as leaders
+  ;; à and À
+  è and È"
   (when (= vim.g.loaded_bepo_nvim nil)
-    (mapping-setup)
+    (mapping-movement)
+    (mapping-tabs)
+    (mapping-easy-access)
+    (mapping-window)
     (set vim.g.loaded_bepo_nvim 1)))
 
-{: setup}
+{: setup
+ :mapping_movement mapping-movement
+ :mapping_tabs mapping-tabs
+ :mapping_easy_access mapping-easy-access
+ :mapping_window mapping-window}
 

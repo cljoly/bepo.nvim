@@ -11,7 +11,7 @@ local function map_all(key, target)
   map_normal(key, target)
   return map_text_object(key, target)
 end
-local function mapping_setup()
+local function mapping_movement()
   map_all("c", "h")
   map_all("t", "j")
   map_all("s", "k")
@@ -33,12 +33,16 @@ local function mapping_setup()
   map_all("j", "r")
   map_all("J", "R")
   map_all("k", "s")
-  map_all("K", "S")
+  return map_all("K", "S")
+end
+local function mapping_tabs()
   map_normal("gb", "gT")
   map_normal("g\195\169", "gt")
   map_normal("gB", ":execute \"silent! tabfirst\"<CR>")
   map_normal("g\195\137", ":execute \"silent! tablast\"<CR>")
-  map_normal("gT", "<C-]>")
+  return map_normal("gT", "<C-]>")
+end
+local function mapping_easy_access()
   map_normal("\194\171", "<")
   map_normal("\194\187", ">")
   map_all("g,", "g;")
@@ -48,7 +52,9 @@ local function mapping_setup()
   map_text_object("a\195\169", "aw")
   map_text_object("a\195\137", "aW")
   map_text_object("i\195\169", "iw")
-  map_text_object("i\195\137", "iW")
+  return map_text_object("i\195\137", "iW")
+end
+local function mapping_window()
   map_normal("w", "<C-w>")
   map_normal("W", "<C-w><C-w>")
   map_normal("wc", "<C-w>h")
@@ -65,11 +71,14 @@ local function mapping_setup()
 end
 local function setup()
   if (vim.g.loaded_bepo_nvim == nil) then
-    mapping_setup()
+    mapping_movement()
+    mapping_tabs()
+    mapping_easy_access()
+    mapping_window()
     vim.g.loaded_bepo_nvim = 1
     return nil
   else
     return nil
   end
 end
-return {setup = setup}
+return {setup = setup, mapping_movement = mapping_movement, mapping_tabs = mapping_tabs, mapping_easy_access = mapping_easy_access, mapping_window = mapping_window}
