@@ -43,7 +43,8 @@
   ;; {HJKL} devient [CTSR]
   (map-all :T :J)
   (map-all :S :K)
-  ;;   (map-all "R" "L") ;; {HJKL} devient [CTSR] -> free R
+  (map-all :R :L)
+  ;; {HJKL} devient [CTSR] -> free R
   ;; ------
   ;; on préserve les variantes avec 'g' 
   (map-all :gt :gj)
