@@ -125,10 +125,10 @@
   (map-normal "wÉ" :<C-w>T))
 
 (fn setup []
-  "Keys that are still free
-  ;; , and ; as they may be used as leaders
-  ;; à and À
-  è and È"
+  "Keys that are still free:
+  * , and ; as they may be used as leaders
+  * à and À
+  * è and È"
   (when (= vim.g.loaded_bepo_nvim nil)
     (mapping-movement)
     (mapping-tabs)
