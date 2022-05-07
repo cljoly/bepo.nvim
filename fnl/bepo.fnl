@@ -13,6 +13,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 ;;
+;; Credit: Inspired by https://github.com/michamos/vim-bepo by Micha Moskovic
 
 (fn map-text-object [key target]
   "For text-objects mappings"
@@ -28,7 +29,7 @@
       (vim.api.nvim_set_keymap :n key target {:noremap true})
       (map-text-object key target)))
 
-(fn setup []
+(fn mapping-setup []
   ;; Keys still free
   ;; , and ; as they may be used as leaders
   ;; à and À
@@ -73,9 +74,9 @@
   ;; le couple [gb]/[gé] agit sur les tabs
   (map-all "gé" :gt)
   ;; le couple [gb]/[gé] agit sur les tabs
-  (map-all :gB ":execute " silent! tabfirst :<CR>)
+  (map-all :gB ":execute \"silent! tabfirst\"<CR>")
   ;; [gB] va au premier tab
-  (map-all "gÉ" ":execute " silent! tablast "<CR> ")
+  (map-all "gÉ" ":execute \"silent! tablast\"<CR>")
   ;; [gÉ] au dernier
   (map-all :gT "<C-]>")
   ;; [gT] est libéré et peut agir sur les tags
@@ -130,6 +131,11 @@
   (map-all "wÉ" :<C-w>T)
   ;; déplace sur un nouveau tab
   )
+
+(fn setup []
+  (when (= vim.g.loaded_bepo_nvim nil)
+    (mapping-setup)
+    (set vim.g.loaded_bepo_nvim 1)))
 
 {: setup}
 

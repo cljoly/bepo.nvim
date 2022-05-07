@@ -14,7 +14,7 @@ local function map_all(key, target)
     return map_text_object(key, target)
   end
 end
-local function setup()
+local function mapping_setup()
   map_all("c", "h")
   map_all("t", "j")
   map_all("s", "k")
@@ -35,8 +35,8 @@ local function setup()
   map_all("K", "S")
   map_all("gb", "gT")
   map_all("g\195\169", "gt")
-  map_all("gB", ":execute ", __fnl_global__silent_21, tabfirst, "<CR>")
-  map_all("g\195\137", ":execute ", __fnl_global__silent_21, tablast, "<CR> ")
+  map_all("gB", ":execute \"silent! tabfirst\"<CR>")
+  map_all("g\195\137", ":execute \"silent! tablast\"<CR>")
   map_all("gT", "<C-]>")
   map_all("\194\171", "<")
   map_all("\194\187", ">")
@@ -61,5 +61,14 @@ local function setup()
   map_all("wh", "<C-w>s")
   map_all("w\195\169", "<C-w>t")
   return map_all("w\195\137", "<C-w>T")
+end
+local function setup()
+  if (vim.g.loaded_bepo_nvim == nil) then
+    mapping_setup()
+    vim.g.loaded_bepo_nvim = 1
+    return nil
+  else
+    return nil
+  end
 end
 return {setup = setup}
