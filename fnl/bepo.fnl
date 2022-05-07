@@ -17,16 +17,14 @@
 
 (fn map-text-object [key target]
   "For text-objects mappings"
-  (if (= (vim.fn.maparg key :o) "")
-      (vim.api.nvim_set_keymap :o key target {:noremap true})
-      (= (vim.fn.maparg key :x) "")
-      (vim.api.nvim_set_keymap :x key target {:noremap true}))
+  (vim.api.nvim_set_keymap :o key target {:noremap true})
+  (vim.api.nvim_set_keymap :x key target {:noremap true})
   nil)
 
 (fn map-normal [key target]
   "For normal mode mappings"
-  (when (= (vim.fn.maparg key :n) "")
-    (vim.api.nvim_set_keymap :n key target {:noremap true})))
+  (vim.api.nvim_set_keymap :n key target {:noremap true})
+  nil)
 
 (fn map-all [key target]
   "For all directional mappings"

@@ -1,18 +1,11 @@
 local function map_text_object(key, target)
-  if (vim.fn.maparg(key, "o") == "") then
-    vim.api.nvim_set_keymap("o", key, target, {noremap = true})
-  elseif (vim.fn.maparg(key, "x") == "") then
-    vim.api.nvim_set_keymap("x", key, target, {noremap = true})
-  else
-  end
+  vim.api.nvim_set_keymap("o", key, target, {noremap = true})
+  vim.api.nvim_set_keymap("x", key, target, {noremap = true})
   return nil
 end
 local function map_normal(key, target)
-  if (vim.fn.maparg(key, "n") == "") then
-    return vim.api.nvim_set_keymap("n", key, target, {noremap = true})
-  else
-    return nil
-  end
+  vim.api.nvim_set_keymap("n", key, target, {noremap = true})
+  return nil
 end
 local function map_all(key, target)
   map_normal(key, target)
