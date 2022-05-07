@@ -3,6 +3,10 @@ local function map_text_object(key, target)
   vim.api.nvim_set_keymap("x", key, target, {noremap = true})
   return nil
 end
+local function map_visual(key, target)
+  vim.api.nvim_set_keymap("v", key, target, {noremap = true})
+  return nil
+end
 local function map_normal(key, target)
   vim.api.nvim_set_keymap("n", key, target, {noremap = true})
   return nil
@@ -44,7 +48,9 @@ local function mapping_tabs()
 end
 local function mapping_easy_access()
   map_normal("\194\171", "<")
+  map_visual("\194\171", "<gv")
   map_normal("\194\187", ">")
+  map_visual("\194\187", ">gv")
   map_all("g,", "g;")
   map_all("g;", "g,")
   map_all("\195\169", "w")

@@ -21,6 +21,11 @@
   (vim.api.nvim_set_keymap :x key target {:noremap true})
   nil)
 
+(fn map-visual [key target]
+  "For normal mode mappings"
+  (vim.api.nvim_set_keymap :v key target {:noremap true})
+  nil)
+
 (fn map-normal [key target]
   "For normal mode mappings"
   (vim.api.nvim_set_keymap :n key target {:noremap true})
@@ -85,8 +90,10 @@
 (fn mapping-easy-access []
   ;; [<] est moins accessible que [«]
   (map-normal "«" "<")
+  (map-visual "«" "<gv")
   ;; idem pour [»] et [>]
   (map-normal "»" ">")
+  (map-visual "»" ">gv")
   ;; idem pour [g,] et [g;] qui sont permutés
   (map-all "g," "g;")
   (map-all "g;" "g,")
