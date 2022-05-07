@@ -137,8 +137,8 @@
     (set vim.g.loaded_bepo_nvim 1)))
 
 {: setup
- :mapping_movement mapping-movement
- :mapping_tabs mapping-tabs
- :mapping_easy_access mapping-easy-access
- :mapping_window mapping-window}
+ :movement mapping-movement
+ :tabs mapping-tabs
+ :easy_access mapping-easy-access
+ :window mapping-window}
 

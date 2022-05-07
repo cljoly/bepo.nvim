@@ -81,4 +81,4 @@ local function setup()
     return nil
   end
 end
-return {setup = setup, mapping_movement = mapping_movement, mapping_tabs = mapping_tabs, mapping_easy_access = mapping_easy_access, mapping_window = mapping_window}
+return {setup = setup, movement = mapping_movement, tabs = mapping_tabs, easy_access = mapping_easy_access, window = mapping_window}
