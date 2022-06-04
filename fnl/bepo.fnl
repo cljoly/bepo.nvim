@@ -133,8 +133,9 @@
 
 (fn setup []
   "Keys that are still free:
-  * , and ; as they may be used as leaders
+  * , and ; as they may be used as leaders (if you don’t use those as leaders, you may want to swap the two)
   * à and À
+  * ç and Ç
   * è and È"
   (when (= vim.g.loaded_bepo_nvim nil)
     (mapping-movement)
