@@ -54,7 +54,7 @@
   (map-all :gs :gk)
   ;; ------
   ;; on préserve les variantes avec 'z'
-  (map-all :zj :zt)
+  (map-all :zT :zt)
   (map-all :zt :zj)
   (map-all :zk :zs)
   (map-all :zs :zk)
