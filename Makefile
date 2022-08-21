@@ -1,5 +1,5 @@
 fnl_files = $(wildcard fnl/*.fnl)
-help_file = help/bepo-nvim.txt
+help_file = doc/bepo-nvim.txt
 help_file_mapping = bepo-nvim-mapping
 out_files = $(fnl_files:fnl/%.fnl=lua/%.lua) $(help_file) $(help_file_mapping)
 
@@ -19,7 +19,7 @@ clean:
 
 doc: $(help_file)
 
-$(help_file): $(help_file_mapping) help/
+$(help_file): $(help_file_mapping) doc/
 	rm $(help_file)
 	cat $(help_file_mapping) >>$(help_file)
 	rm $(help_file_mapping)
@@ -27,7 +27,7 @@ $(help_file): $(help_file_mapping) help/
 $(help_file_mapping): gen_doc.fnl $(fnl_files)
 	fennel --raw-errors --no-compiler-sandbox --metadata --globals '*' gen_doc.fnl > $(help_file_mapping)
 
-help/:
-	mkdir -p help
+doc/:
+	mkdir -p doc
 
 .PHONY: clean doc $(help_file_mapping)
