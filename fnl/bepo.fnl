@@ -88,7 +88,7 @@
       (map-all :k :s) ;; {K} devient [S]
       (map-all :K :S))
 
-(𝛅 mapping-tabs [] ;; le couple [gb]/[gé] agit sur les tabs
+(𝛅 mapping-tabs [] "le couple [gb]/[gé] agit sur les tabs"
       (map-normal :gb :gT) (map-normal "gé" :gt) ;; [gB] va au premier tab
       (map-normal :gB ":execute \"silent! tabfirst\"<CR>") ;; [gÉ] au dernier
       (map-normal "gÉ" ":execute \"silent! tablast\"<CR>")
@@ -108,7 +108,7 @@
       (map-text-object "ié" :iw) ;; idem pour [iW] et [iÉ]
       (map-text-object "iÉ" :iW))
 
-(𝛅 mapping-window [] ;; [w] est libre pour faire <C-w>
+(𝛅 mapping-window [] "[w] est libre pour faire <C-w>, grâce à easy_access"
       (map-normal :w :<C-w>) ;; et [w] pour faire <C-w><C-w>
       (map-normal :W :<C-w><C-w>) ;; on map [w]+direction, miniscule + majuscule
       (map-normal :wc :<C-w>h) (map-normal :wt :<C-w>j) (map-normal :ws :<C-w>k)
