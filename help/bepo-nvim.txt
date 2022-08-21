@@ -63,17 +63,6 @@ require("bepo").window()                                        *bepo.nvim-windo
      n   wÉ     <C-w>T
 
 --------------------------------------------------------------------------------
-require("bepo").tabs()                                            *bepo.nvim-tabs*
-le couple [gb]/[gé] agit sur les tabs
-
- Modes  Bepo     Qwerty
-     n    gb     gT
-     n   gé     gt
-     n    gB     :execute "silent! tabfirst"<CR>
-     n   gÉ     :execute "silent! tablast"<CR>
-     n    gT     <C-]>
-
---------------------------------------------------------------------------------
 require("bepo").movement()                                    *bepo.nvim-movement*
 on préserve {hjkl} pour les directions
 
@@ -117,6 +106,17 @@ require("bepo").easy_access()                              *bepo.nvim-easy_acces
     ox   aÉ     aW
     ox   ié     iw
     ox   iÉ     iW
+
+--------------------------------------------------------------------------------
+require("bepo").tabs()                                            *bepo.nvim-tabs*
+le couple [gb]/[gé] agit sur les tabs
+
+ Modes  Bepo     Qwerty
+     n    gb     gT
+     n   gé     gt
+     n    gB     :execute "silent! tabfirst"<CR>
+     n   gÉ     :execute "silent! tablast"<CR>
+     n    gT     <C-]>
 
 
 vim:tw=78:ts=8:ft=help:norl:

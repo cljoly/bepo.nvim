@@ -26,6 +26,8 @@
   (let [len (length str)]
     (.. str (string.rep " " (- max len)))))
 
+(local mapping-struct-header {:bepo :Bepo :modes :Modes :qwerty :Qwerty})
+
 (fn print-mapping-struct [struct]
   (match struct
     {: bepo : modes : qwerty}
@@ -89,22 +91,31 @@ in each group. “Modes” have the same meaning as in the |map-table|.
 ")
 
 (let [tbl (collect [name docstruct (pairs bepo)]
-            (if (= name :setup)
-                nil
-                (values name docstruct)))]
+            (if (= name :setup) nil
+                (= (type docstruct) :table) (values name docstruct)
+                (error (.. "Invalid type for " name))))]
   (do
     (table.sort tbl)
     (each [name docstruct (pairs tbl)]
       (do
+        (var need-header true)
+        (fn print-header []
+          (do
+            (print-mapping-struct mapping-struct-header)
+            (set need-header false)))
+
         (----)
         (print-lua-import name)
         (-?> docstruct (?. :docstring) print)
         (print "")
         (if (> (length docstruct.body) 0)
-            (print-mapping-struct {:bepo :Bepo :modes :Modes :qwerty :Qwerty}))
-        (each [_ mapping-struct (pairs docstruct.body)]
+            (print-header))
+        (each [i mapping-struct (pairs docstruct.body)]
+          (if need-header (print-hedear))
           (match mapping-struct
-            {:comment c} (print c)
+            {:comment c} (do
+                           (print (.. "\n" c))
+                           (set need-header true))
             _ (print-mapping-struct mapping-struct)))
         (print "")))))
 
