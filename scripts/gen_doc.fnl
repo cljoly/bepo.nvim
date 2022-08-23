@@ -16,6 +16,10 @@
 
 (local fennel (require :fennel))
 
+; Requires a recent Lua version for UTF-8 support
+(assert (> _VERSION "Lua 5.3"))
+(local utf8 (require :utf8))
+
 (fn ==== []
   (print (string.rep "=" 80)))
 
@@ -23,7 +27,11 @@
   (print (string.rep "-" 80)))
 
 (fn right-align [str max]
-  (let [len (length str)]
+  (let [len (utf8.len str)]
+    (.. (string.rep " " (- max len)) str)))
+
+(fn left-align [str max]
+  (let [len (utf8.len str)]
     (.. str (string.rep " " (- max len)))))
 
 (local mapping-struct-header {:bepo :Bepo :modes :Modes :qwerty :Qwerty})
@@ -31,11 +39,11 @@
 (fn print-mapping-struct [struct]
   (match struct
     {: bepo : modes : qwerty}
-    (print (string.format "%6s %5s     %s" modes bepo qwerty))
+    (print (.. (right-align modes 6) "  " (left-align bepo 4) "  " qwerty))
     _ (error (.. "Received an invalid struct" (fennel.view struct)))))
 
 (fn print-lua-import [name]
-  (->> (values (right-align (string.format "require(\"bepo\").%s()" name) 46)
+  (->> (values (left-align (string.format "require(\"bepo\").%s()" name) 46)
                (.. :*bepo.nvim- name "*"))
        (string.format "%s %35s")
        (print)))
