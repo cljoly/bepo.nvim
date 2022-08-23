@@ -1,3 +1,7 @@
+local function map_cmd_insert(key, target)
+  vim.api.nvim_set_keymap("", key, target, {noremap = true})
+  return nil
+end
 local function map_text_object(key, target)
   vim.api.nvim_set_keymap("o", key, target, {noremap = true})
   vim.api.nvim_set_keymap("x", key, target, {noremap = true})
@@ -60,6 +64,7 @@ local function mapping_easy_access()
   map_text_object("i\195\169", "iw")
   return map_text_object("i\195\137", "iW")
 end
+map_cmd_insert("<C-\195\169>", "<C-w>")
 local function mapping_window()
   map_normal("w", "<C-w>")
   map_normal("W", "<C-w><C-w>")

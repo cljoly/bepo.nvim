@@ -15,6 +15,11 @@
 ;;
 ;; Credit: Inspired by https://github.com/michamos/vim-bepo by Micha Moskovic
 
+(fn map-cmd-insert [key target]
+  "For insert and command mode"
+  (vim.api.nvim_set_keymap "" key target {:noremap true})
+  nil)
+
 (fn map-text-object [key target]
   "For text-objects mappings"
   (vim.api.nvim_set_keymap :o key target {:noremap true})
@@ -44,6 +49,7 @@
   (fn fun-to-mods [fun]
     "Converts a function to the modes it sets mappings for"
     (match (tostring fun)
+      :map-cmd-insert :ic
       :map-text-object :ox
       :map-visual :x
       :map-normal :n
@@ -107,6 +113,8 @@
       (map-text-object "aÉ" :aW) ;; idem pour [iw] et [ié]
       (map-text-object "ié" :iw) ;; idem pour [iW] et [iÉ]
       (map-text-object "iÉ" :iW))
+      ;; Pareil pour <C-w> en mode insertion et commande
+      (map-cmd-insert "<C-é>" "<C-w>")
 
 (𝛅 mapping-window [] "[w] est libre pour faire <C-w>, grâce à easy_access"
       (map-normal :w :<C-w>) ;; et [w] pour faire <C-w><C-w>
