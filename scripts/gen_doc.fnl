@@ -39,7 +39,8 @@
 (fn print-mapping-struct [struct]
   (match struct
     {: bepo : modes : qwerty}
-    (print (.. (right-align modes 6) "  " (left-align bepo 4) "  " qwerty))
+    (let [qw (if (= ">" qwerty) "> " qwerty)]
+      (print (.. (right-align modes 6) "  " (left-align bepo 4) "  " qw)))
     _ (error (.. "Received an invalid struct" (fennel.view struct)))))
 
 (fn print-lua-import [name]
@@ -58,7 +59,7 @@
 
 Author:   Clément Joly <https://cj.rs/contact>
 Homepage: <https://cj.rs/bepo-nvim>
-License:  APACHE license
+License:  APACHE-2.0
 
 
                                       Type |gO| to see the table of contents.

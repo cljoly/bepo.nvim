@@ -4,7 +4,7 @@
 
 Author:   Clément Joly <https://cj.rs/contact>
 Homepage: <https://cj.rs/bepo-nvim>
-License:  APACHE license
+License:  APACHE-2.0
 
 
                                       Type |gO| to see the table of contents.
@@ -72,6 +72,17 @@ on préserve {hjkl} pour les directions
     nx  K     S
 
 --------------------------------------------------------------------------------
+require("bepo").tabs()                                            *bepo.nvim-tabs*
+le couple [gb]/[gé] agit sur les tabs
+
+ Modes  Bepo  Qwerty
+     n  gb    gT
+     n  gé    gt
+     n  gB    :execute "silent! tabfirst"<CR>
+     n  gÉ    :execute "silent! tablast"<CR>
+     n  gT    <C-]>
+
+--------------------------------------------------------------------------------
 require("bepo").window()                                        *bepo.nvim-window*
 [w] est libre pour faire <C-w>, grâce à easy_access
 
@@ -91,23 +102,12 @@ require("bepo").window()                                        *bepo.nvim-windo
      n  wÉ    <C-w>T
 
 --------------------------------------------------------------------------------
-require("bepo").tabs()                                            *bepo.nvim-tabs*
-le couple [gb]/[gé] agit sur les tabs
-
- Modes  Bepo  Qwerty
-     n  gb    gT
-     n  gé    gt
-     n  gB    :execute "silent! tabfirst"<CR>
-     n  gÉ    :execute "silent! tablast"<CR>
-     n  gT    <C-]>
-
---------------------------------------------------------------------------------
 require("bepo").easy_access()                              *bepo.nvim-easy_access*
 
  Modes  Bepo  Qwerty
      n  «     <
      v  «     <gv
-     n  »     >
+     n  »     > 
      v  »     >gv
     nx  g,    g;
     nx  g;    g,
