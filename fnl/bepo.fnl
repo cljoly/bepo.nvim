@@ -1,4 +1,4 @@
-;; bepo.nvim: bepo mapping for neovim
+;;; bepo.nvim: bepo mapping for neovim
 ;; Copyright 2022 Clément Joly
 ;;
 ;; Licensed under the Apache License, Version 2.0 (the "License");
