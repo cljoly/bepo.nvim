@@ -102,11 +102,14 @@ in each group. “Modes” have the same meaning as in the |map-table|.
 (let [tbl (collect [name docstruct (pairs bepo)]
             (if (= name :setup) nil
                 (= (type docstruct) :table) (values name docstruct)
-                (error (.. "Invalid type for " name))))]
+                (error (.. "Invalid type for " name))))
+      tbl_keys (icollect [name docstructy (pairs tbl)]
+                name)]
   (do
-    (table.sort tbl)
-    (each [name docstruct (pairs tbl)]
+    (table.sort tbl_keys)
+    (each [_ name (pairs tbl_keys)]
       (do
+        (local docstruct (. tbl name))
         (var need-header true)
         (fn print-header []
           (do

@@ -44,34 +44,21 @@ The following subsections go into details of exactly what mappings are
 in each group. “Modes” have the same meaning as in the |map-table|.
 
 --------------------------------------------------------------------------------
-require("bepo").tabs()                                            *bepo.nvim-tabs*
-le couple [gb]/[gé] agit sur les tabs
+require("bepo").easy_access()                              *bepo.nvim-easy_access*
 
  Modes  Bepo  Qwerty
-     n  gb    gT
-     n  gé    gt
-     n  gB    :execute "silent! tabfirst"<CR>
-     n  gÉ    :execute "silent! tablast"<CR>
-     n  gT    <C-]>
-
---------------------------------------------------------------------------------
-require("bepo").window()                                        *bepo.nvim-window*
-[w] est libre pour faire <C-w>, grâce à easy_access
-
- Modes  Bepo  Qwerty
-     n  w     <C-w>
-     n  W     <C-w><C-w>
-     n  wc    <C-w>h
-     n  wt    <C-w>j
-     n  ws    <C-w>k
-     n  wr    <C-w>l
-     n  wC    <C-w>H
-     n  wT    <C-w>J
-     n  wS    <C-w>K
-     n  wR    <C-w>L
-     n  wh    <C-w>s
-     n  wé    <C-w>t
-     n  wÉ    <C-w>T
+     n  «     <
+     x  «     <gv
+     n  »     > 
+     x  »     >gv
+    nx  g,    g;
+    nx  g;    g,
+    nx  é     w
+    nx  É     W
+    ox  aé    aw
+    ox  aÉ    aW
+    ox  ié    iw
+    ox  iÉ    iW
 
 --------------------------------------------------------------------------------
 require("bepo").movement()                                    *bepo.nvim-movement*
@@ -102,21 +89,34 @@ on préserve {hjkl} pour les directions
     nx  K     S
 
 --------------------------------------------------------------------------------
-require("bepo").easy_access()                              *bepo.nvim-easy_access*
+require("bepo").tabs()                                            *bepo.nvim-tabs*
+le couple [gb]/[gé] agit sur les tabs
 
  Modes  Bepo  Qwerty
-     n  «     <
-     x  «     <gv
-     n  »     > 
-     x  »     >gv
-    nx  g,    g;
-    nx  g;    g,
-    nx  é     w
-    nx  É     W
-    ox  aé    aw
-    ox  aÉ    aW
-    ox  ié    iw
-    ox  iÉ    iW
+     n  gb    gT
+     n  gé    gt
+     n  gB    :execute "silent! tabfirst"<CR>
+     n  gÉ    :execute "silent! tablast"<CR>
+     n  gT    <C-]>
+
+--------------------------------------------------------------------------------
+require("bepo").window()                                        *bepo.nvim-window*
+[w] est libre pour faire <C-w>, grâce à easy_access
+
+ Modes  Bepo  Qwerty
+     n  w     <C-w>
+     n  W     <C-w><C-w>
+     n  wc    <C-w>h
+     n  wt    <C-w>j
+     n  ws    <C-w>k
+     n  wr    <C-w>l
+     n  wC    <C-w>H
+     n  wT    <C-w>J
+     n  wS    <C-w>K
+     n  wR    <C-w>L
+     n  wh    <C-w>s
+     n  wé    <C-w>t
+     n  wÉ    <C-w>T
 
 
 vim:tw=78:ts=8:ft=help:norl:

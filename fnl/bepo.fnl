@@ -138,4 +138,3 @@
  :tabs mapping-tabs
  :easy_access mapping-easy-access
  :window mapping-window}
-
