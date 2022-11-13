@@ -15,26 +15,27 @@
 ;;
 ;; Credit: Inspired by https://github.com/michamos/vim-bepo by Micha Moskovic
 
-(fn map-text-object [key target]
+(macro map-text-object [key target]
   "For text-objects mappings"
-  (vim.api.nvim_set_keymap :o key target {:noremap true})
-  (vim.api.nvim_set_keymap :x key target {:noremap true})
-  nil)
+  `(do
+     (vim.api.nvim_set_keymap :o ,key ,target {:noremap true})
+     (vim.api.nvim_set_keymap :x ,key ,target {:noremap true})
+     nil))
 
-(fn map-visual [key target]
+(macro map-visual [key target]
   "For normal mode mappings"
-  (vim.api.nvim_set_keymap :v key target {:noremap true})
-  nil)
+  `(vim.api.nvim_set_keymap :v ,key ,target {:noremap true}))
 
-(fn map-normal [key target]
+(macro map-normal [key target]
   "For normal mode mappings"
-  (vim.api.nvim_set_keymap :n key target {:noremap true})
-  nil)
+  `(vim.api.nvim_set_keymap :n ,key ,target {:noremap true}))
 
-(fn map-all [key target]
+(macro map-all [key target]
   "For all directional mappings"
-  (map-normal key target)
-  (map-text-object key target))
+  `(do
+     (map-normal ,key ,target)
+     (map-text-object ,key ,target)
+     nil))
 
 (macro 𝛅 [...]
   "When called with the right context, this will print the documentation of the
