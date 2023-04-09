@@ -43,7 +43,7 @@
   https://fennel-lang.org/reference#compiler-environment)"
   (fn fun-to-mods [fun]
     "Converts a function to the modes it sets mappings for"
-    (match (tostring fun)
+    (case (tostring fun)
       :map-text-object :ox
       :map-visual :x
       :map-normal :n

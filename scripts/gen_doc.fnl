@@ -37,11 +37,12 @@
 (local mapping-struct-header {:bepo :Bepo :modes :Modes :qwerty :Qwerty})
 
 (fn print-mapping-struct [struct]
-  (match struct
-    {: bepo : modes : qwerty} (let [qw (if (= ">" qwerty) "> " qwerty)]
-                                (print (.. (right-align modes 6) "  "
-                                           (left-align bepo 4) "  " qw)))
-    _ (error (.. "Received an invalid struct" (fennel.view struct)))))
+  (case struct
+    {: bepo : modes : qwerty}
+    (let [qw (if (= ">" qwerty) "> " qwerty)]
+      (print (.. (right-align modes 6) "  " (left-align bepo 4) "  " qw)))
+    _
+    (error (.. "Received an invalid struct" (fennel.view struct)))))
 
 (fn print-lua-import [name]
   (->> (values (left-align (string.format "require(\"bepo\").%s()" name) 46)
@@ -104,13 +105,14 @@ in each group. “Modes” have the same meaning as in the |map-table|.
                 (= (type docstruct) :table) (values name docstruct)
                 (error (.. "Invalid type for " name))))
       tbl_keys (icollect [name docstructy (pairs tbl)]
-                name)]
+                 name)]
   (do
     (table.sort tbl_keys)
     (each [_ name (pairs tbl_keys)]
       (do
         (local docstruct (. tbl name))
         (var need-header true)
+
         (fn print-header []
           (do
             (print-mapping-struct mapping-struct-header)
@@ -124,11 +126,13 @@ in each group. “Modes” have the same meaning as in the |map-table|.
             (print-header))
         (each [i mapping-struct (pairs docstruct.body)]
           (if need-header (print-hedear))
-          (match mapping-struct
-            {:comment c} (do
-                           (print (.. "\n" c))
-                           (set need-header true))
-            _ (print-mapping-struct mapping-struct)))
+          (case mapping-struct
+            {:comment c}
+            (do
+              (print (.. "\n" c))
+              (set need-header true))
+            _
+            (print-mapping-struct mapping-struct)))
         (print "")))))
 
 ;; We split the vim and the : to prevent vim from picking up that for the fennel file
