@@ -44,34 +44,6 @@ The following subsections go into details of exactly what mappings are
 in each group. “Modes” have the same meaning as in the |map-table|.
 
 --------------------------------------------------------------------------------
-require("bepo").movement()                                    *bepo.nvim-movement*
-on préserve {hjkl} pour les directions
-
- Modes  Bepo  Qwerty
-    nx  c     h
-    nx  t     j
-    nx  s     k
-    nx  r     l
-    nx  C     H
-    nx  T     J
-    nx  S     K
-    nx  R     L
-    nx  gt    gj
-    nx  gs    gk
-    nx  zT    zt
-    nx  zt    zj
-    nx  zk    zs
-    nx  zs    zk
-    nx  h     t
-    nx  H     T
-    nx  l     c
-    nx  L     C
-    nx  j     r
-    nx  J     R
-    nx  k     s
-    nx  K     S
-
---------------------------------------------------------------------------------
 require("bepo").tabs()                                            *bepo.nvim-tabs*
 le couple [gb]/[gé] agit sur les tabs
 
@@ -102,13 +74,41 @@ require("bepo").window()                                        *bepo.nvim-windo
      n  wÉ    <C-w>T
 
 --------------------------------------------------------------------------------
+require("bepo").movement()                                    *bepo.nvim-movement*
+on préserve {hjkl} pour les directions
+
+ Modes  Bepo  Qwerty
+    nx  c     h
+    nx  t     j
+    nx  s     k
+    nx  r     l
+    nx  C     H
+    nx  T     J
+    nx  S     K
+    nx  R     L
+    nx  gt    gj
+    nx  gs    gk
+    nx  zT    zt
+    nx  zt    zj
+    nx  zk    zs
+    nx  zs    zk
+    nx  h     t
+    nx  H     T
+    nx  l     c
+    nx  L     C
+    nx  j     r
+    nx  J     R
+    nx  k     s
+    nx  K     S
+
+--------------------------------------------------------------------------------
 require("bepo").easy_access()                              *bepo.nvim-easy_access*
 
  Modes  Bepo  Qwerty
      n  «     <
-     v  «     <gv
+     x  «     <gv
      n  »     > 
-     v  »     >gv
+     x  »     >gv
     nx  g,    g;
     nx  g;    g,
     nx  é     w

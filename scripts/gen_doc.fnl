@@ -38,9 +38,9 @@
 
 (fn print-mapping-struct [struct]
   (match struct
-    {: bepo : modes : qwerty}
-    (let [qw (if (= ">" qwerty) "> " qwerty)]
-      (print (.. (right-align modes 6) "  " (left-align bepo 4) "  " qw)))
+    {: bepo : modes : qwerty} (let [qw (if (= ">" qwerty) "> " qwerty)]
+                                (print (.. (right-align modes 6) "  "
+                                           (left-align bepo 4) "  " qw)))
     _ (error (.. "Received an invalid struct" (fennel.view struct)))))
 
 (fn print-lua-import [name]

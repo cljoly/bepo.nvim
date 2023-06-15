@@ -4,7 +4,7 @@ local function map_text_object(key, target)
   return nil
 end
 local function map_visual(key, target)
-  vim.api.nvim_set_keymap("v", key, target, {noremap = true})
+  vim.api.nvim_set_keymap("x", key, target, {noremap = true})
   return nil
 end
 local function map_normal(key, target)

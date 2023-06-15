@@ -22,8 +22,8 @@
   nil)
 
 (fn map-visual [key target]
-  "For normal mode mappings"
-  (vim.api.nvim_set_keymap :v key target {:noremap true})
+  "For visual mode mappings"
+  (vim.api.nvim_set_keymap :x key target {:noremap true})
   nil)
 
 (fn map-normal [key target]
@@ -45,7 +45,7 @@
     "Converts a function to the modes it sets mappings for"
     (match (tostring fun)
       :map-text-object :ox
-      :map-visual :v
+      :map-visual :x
       :map-normal :n
       :map-all :nx
       other (error (.. "Unsupported function " other))))
