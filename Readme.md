@@ -60,3 +60,19 @@ See [the help file][help] for more details and the mappings installed.
 [vb]: https://github.com/michamos/vim-bepo
 [help]: https://github.com/cljoly/bepo.nvim/blob/main/doc/bepo-nvim.txt
 [bepo]: https://bepo.fr/
+
+## Reporting bugs
+
+Thanks for considering reporting a bug!
+
+We want to know if the issue is caused by:
+1. the plugin itself
+2. your user configuration
+3. the system configuration
+
+Please try to reproduce the bug in nvim stripped of your user configuration by running:
+```
+nvim --clean -u test/mock_setup.lua
+```
+
+If you can’t reproduce the bug in that “clean” nvim instance, it suggests that the bug comes from an interaction of the plugin with your user configuration. Please feel free to open an issue, mentioning that.
