@@ -27,7 +27,7 @@ end_insert -->
 # ⌨️ bepo.nvim
 <!-- end_remove -->
 
-![Neovim version](https://img.shields.io/badge/Neovim-0.5-57A143?style=flat&logo=neovim) [![](https://img.shields.io/badge/powered%20by-riss-lightgrey)](https://cj.rs/riss) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cljoly/bepo.nvim?color=darkgreen&sort=semver)
+![Neovim version](https://img.shields.io/badge/Neovim-0.5-57A143?style=flat&logo=neovim) [![](https://img.shields.io/badge/powered%20by-riss-lightgrey)](https://cj.rs/riss) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cljoly/bepo.nvim?color=darkgreen&sort=semver) ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fd.cj.rs%2Fnvim%2Fbepo.json&cacheSeconds=90000)
 
 <!-- insert
 {{< rawhtml >}}
