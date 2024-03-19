@@ -13,9 +13,6 @@ tags:
 - Bepo
 - Lisp
 - Fennel
-#images:
-#- /telescope-repo-nvim/opengraph.png
-#- /telescope-repo-nvim/opengraph.webp
 ---
 {{< github_badge >}}
 
@@ -39,13 +36,32 @@ Mappings for the [bepo][] layout in Lua, inspired by [vim-bepo][vb]
 
 It aims to be faster (takes only 0.4ms at startup on my machine, while [vim-bepo][vb] requires 1.6ms) and more customizable (see `:help bepo.nvim-cherry-pick`)
 
-## Example Use
+## Installation
 
-You should call the extension early in your config, so that you can erase mappings later (or with later extensions) more easily.
+Add the plugin `cljoly/bepo.nvim` to your package manager.
+
+If you don’t have a package manager yet, I use [paq.nvim][paq].
+You can give it a try :).   
+Look at the [installation instructions][paq_install] and then add the following to your config:
+```lua
+require "paq" {
+  "cljoly/bepo.nvim",
+  -- ... other packages
+}
+```
+
+Then restart neovim and run `PaqInstall`. That will install the bepo.nvim plugin.
+
+## Usage
+
+Once the plugin is installed, you can add a call to set up the bepo mappings to your config:
 
 ``` lua
 require("bepo").setup()
 ```
+You should call the extension early in your `init.lua`, so that you can erase mappings later (or with other extensions) more easily.
+
+## Advanced Usage
 
 You can also apply only some mapping groups:
 ``` lua
@@ -56,10 +72,6 @@ require("bepo").window()
 ```
 
 See [the help file][help] for more details and the mappings installed.
-
-[vb]: https://github.com/michamos/vim-bepo
-[help]: https://github.com/cljoly/bepo.nvim/blob/main/doc/bepo-nvim.txt
-[bepo]: https://bepo.fr/
 
 ## Reporting bugs
 
@@ -76,3 +88,9 @@ nvim --clean -u test/mock_setup.lua
 ```
 
 If you can’t reproduce the bug in that “clean” nvim instance, it suggests that the bug comes from an interaction of the plugin with your user configuration. Please feel free to open an issue, mentioning that.
+
+[bepo]: https://bepo.fr/
+[help]: https://github.com/cljoly/bepo.nvim/blob/main/doc/bepo-nvim.txt
+[paq]: https://github.com/savq/paq-nvim
+[paq_install]: https://github.com/savq/paq-nvim?tab=readme-ov-file#installation
+[vb]: https://github.com/michamos/vim-bepo
